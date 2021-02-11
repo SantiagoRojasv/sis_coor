@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Figuras 2D - Santiago Rojas</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="js/three.js"></script>
+        <script>
+        var renderer;
+      var scene;
+      var camera;
+
+      init();
+
+      function init() 
+        {
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera(
+          10,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          500
+        );
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor(0x000000, 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000,1);
+
+        document.body.appendChild(renderer.domElement);
+
+        var geometry = new THREE.PlaneGeometry(4, 4, 4, 4);
+        var material = new THREE.MeshNormalMaterial({wireframe:false});
+        var plano = new THREE.Mesh(geometry, material);
+        scene.add(plano);
+
+        camera.position.x =30
+        camera.position.y = 30
+        camera.position.z = 30;
+        camera.lookAt(scene.position);
+
+        scene.add(plano);
+
+        render();
+      }
+
+      function render() 
+      {
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+      }
+
+        </script>
+    </body>
+</html>

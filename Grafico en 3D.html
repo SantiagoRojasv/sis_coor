@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Figuras 3D - Santiago Rojas</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="js/three.js"></script>
+        <script>
+        var renderer;
+      var scene;
+      var camera;
+
+      init();
+
+      function init() 
+        {
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera(
+          40,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          500
+        );
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor(0x000000, 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000,1);
+
+        document.body.appendChild(renderer.domElement);
+
+        var cylinderGeometry = new THREE.CylinderGeometry(2.5, 2.5, 3, 50, 2)
+        var cylinderMaterial = new THREE.MeshNormalMaterial({color: 0xf20314});
+        var cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
+
+
+
+        camera.position.x =15;
+        camera.position.y = 10;
+        camera.position.z = 10;
+        camera.lookAt(scene.position);
+
+        scene.add(cylinder);
+
+        render();
+      }
+
+      function render() 
+      {
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+      }
+
+        </script>
+    </body>
+</html>
